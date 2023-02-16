@@ -4,7 +4,7 @@ console.log(now);
 // Print time to Jumbotron
 $("#currentDay").append(now);
 
-//Save Button Functionality
+// Save Button Functionality
 $(document).ready(function () {
   let timeSlots = [9, 10, 11, 12, 13, 14, 15, 16];
   function renderPlans() {
@@ -22,7 +22,7 @@ $(document).ready(function () {
     console.log(inputField);
   });
 });
-//Clear Button Functionality
+// Clear Button Functionality
 $("#9AMClearBTN").click(function () {
   $("#9").val("");
   localStorage.setItem(9, "");
@@ -61,4 +61,28 @@ $("#3PMClearBTN").click(function () {
 $("#4PMClearBTN").click(function () {
   $("#16").val("");
   localStorage.setItem(16, "");
+});
+
+// id value < current time = grey
+$('.description').each(function (){
+  if (parseInt($(this).attr('id')) < dayjs().hour()){
+    //color the box
+    $(this).addClass("past");
+  };
+});
+
+// id value = current time = red
+$('.description').each(function (){
+  if (parseInt($(this).attr('id')) === dayjs().hour()){
+    //color the box
+    $(this).addClass("present");
+  };
+});
+
+// id value > current time = green
+$('.description').each(function (){
+  if (parseInt($(this).attr('id')) > dayjs().hour()){
+    //color the box
+    $(this).addClass("future");
+  };
 });
